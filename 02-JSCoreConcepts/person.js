@@ -5,7 +5,7 @@ class Person {
     }
 
     getFirstAndLastName() {
-        return `${this.name} ${this.surname}`
+        return `${this.name} ${this.surname.toUpperCase()}`
     }
 
     getInitials(){
