@@ -15,10 +15,16 @@
 	</form>
 
 	<script>
-		// a JavaScript code here ...
-		var university = "Cracow University of Economics";
-		var address = "Rakowicka 27, Krakow, POLAND";
+		const university = "Cracow University of Economics";
+		const address = "Rakowicka 27, Krakow, POLAND";
 
+		const hintButton = document.getElementsByTagName("button").item(0);
+		hintButton.onclick = () => {
+			const universityField = document.getElementsByTagName("input").item(0);
+			const addressField = document.getElementsByTagName("input").item(1);
+			universityField.value = university;
+			addressField.value = address;
+		};
 	</script>
 </body>
 
