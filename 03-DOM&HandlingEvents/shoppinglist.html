@@ -20,8 +20,15 @@
     </ol>
 
     <script>
-    	// a JavaScript code here ...
+        const button = document.getElementsByTagName("button").item(0);
+        const list = document.getElementsByTagName("ol").item(0);
+        const li = document.getElementsByTagName("li");
 
+        button.onclick = () => {
+            const item = document.createElement("li");
+            item.innerHTML = document.getElementsByName("item").item(0).value;
+            list.appendChild(item);
+        };
     </script>
 </body>
 
