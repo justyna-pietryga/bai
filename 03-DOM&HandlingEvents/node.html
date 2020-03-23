@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Create DOM elements</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<script>
-			// a JavaScript code here ...
-			
-		</script>
-	</body>
+<head>
+    <title>Create DOM elements</title>
+    <meta charset="UTF-8">
+
+    <style>
+        .cell {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: center;
+			width: 100px;
+			height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    const body = document.getElementsByTagName("body").item(0);
+    const table = document.createElement("table");
+    body.appendChild(table);
+    let value = 1;
+    for (let i = 0; i < 2; i++) {
+        let row = document.createElement("tr");
+        for (let j = 0; j < 2; j++) {
+            let cell = document.createElement("td");
+            cell.setAttribute('class', 'cell');
+			cell.innerHTML = value.toString();
+			// cell.style.border = "1px solid black"; mozna tez styl ustawiać w taki sposób
+            row.appendChild(cell);
+            value++;
+        }
+        table.appendChild(row);
+    }
+</script>
+</body>
 </html>
