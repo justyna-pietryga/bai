@@ -2,36 +2,80 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.min.js"></script>
 </head>
 <body>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        films: [
-          {
-            language: 'Python',
-            popularity: 25.95
-          },
-          {
-            language: 'Java',
-            popularity: 21.42
-          },
-          {
-            language: 'JavaScript',
-            popularity: 8.26
-          },
-          {
-            language: 'C#',
-            popularity: 7.62
-          },
-          {
-            language: 'Php',
-            popularity: 7.37
-          }
-        ] 
-      }
+
+<div id="app">
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            languages: [
+                {
+                    language: 'Python',
+                    popularity: 25.95
+                },
+                {
+                    language: 'Java',
+                    popularity: 21.42
+                },
+                {
+                    language: 'JavaScript',
+                    popularity: 8.26
+                },
+                {
+                    language: 'C#',
+                    popularity: 7.62
+                },
+                {
+                    language: 'Php',
+                    popularity: 7.37
+                }
+            ]
+        },
+        mounted() {
+            this.createChart('myChart', this.chartData)
+        },
+        methods: {
+            createChart(chartId, chartData) {
+                const ctx = document.getElementById(chartId);
+                const myChart = new Chart(ctx, {
+                    type: chartData.type,
+                    data: chartData.data,
+                    options: chartData.options,
+                });
+            }
+        },
+        computed: {
+            chartData: function () {
+                return {
+                    type: 'bar',
+                    data: {
+                        labels: this.languages.map(lang => lang.language),
+                        datasets: [{
+                            label: '#popularity',
+                            data: this.languages.map(lang => lang.popularity),
+                            backgroundColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                        }],
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                }
+            }
+        }
     });
-  </script>
+</script>
 </body>
 </html>
