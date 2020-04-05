@@ -4,18 +4,30 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        todo: [
-          'Purchase two tickets to cinema',
-          'Feed cat',
-          'Pay cable bill',
-          'Go shopping'
-      }
+<div id="app">
+    <h4>DO WYKONANIA</h4>
+    <ol>
+        <li v-for="el in orderedTodo">{{el}}</li>
+    </ol>
+</div>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            todo: [
+                'Purchase two tickets to cinema',
+                'Feed cat',
+                'Pay cable bill',
+                'Go shopping'
+            ]
+        },
+        computed: {
+            orderedTodo : function () {
+                return this.todo.sort()
+            }
+        }
     });
-  </script>
+</script>
 
 </body>
 </html>
