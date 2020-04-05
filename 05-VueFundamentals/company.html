@@ -4,20 +4,38 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        company: 'UnikPol S.A.',
-        address: 'ul. Ukryta 5',
-        postcode: '02-114',
-        city: 'Rawa Mazowiecka',
-        landline: '22 345 90 21',
-        mobile: '888 213 992',
-        web: 'http://www.unikpol.pl'
-      }
+<div id="app">
+    <div id="container">
+        <h1><b>{{company.toUpperCase()}}</b></h1>
+        <h1>{{address}}</h1>
+        <h1>{{postcode}} {{city}}</h1>
+        <h1>tel. {{landline}}, {{mobile}}</h1>
+        <h1> <a :href="web">{{web}}</a></h1>
+    </div>
+</div>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            company: 'UnikPol S.A.',
+            address: 'ul. Ukryta 5',
+            postcode: '02-114',
+            city: 'Rawa Mazowiecka',
+            landline: '22 345 90 21',
+            mobile: '888 213 992',
+            web: 'http://www.unikpol.pl'
+        }
     });
-  </script>
+</script>
+
+<style>
+    #container {
+        border: black 1px solid;
+        text-align: center;
+        padding: 10px;
+    }
+</style>
 
 </body>
 </html>
