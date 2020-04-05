@@ -10,11 +10,10 @@
     <h3>Product: {{product.name}}</h3>
     <h3>Unit Price: {{product.unitPrice}} zł</h3>
     <h3>Quantity: {{product.quantity}}</h3>
-    <h3>Amount: {{price}}</h3>
-    <h3>VAT Tax Rate: {{product.VAT}}</h3>
+    <h3>Amount: {{price}} zł</h3>
+    <h3>VAT Tax Rate: {{product.VAT}} %</h3>
     <h2>------------------------</h2>
-    <h2>------------------------</h2>
-    <h2><b>Total: {{total}}</b></h2>
+    <h2><b>Total: {{total}} zł</b></h2>
 
 </div>
 
@@ -31,10 +30,12 @@
         },
         computed: {
             price: function () {
-                return this.product.unitPrice * this.product.quantity;
+                const {unitPrice, quantity} = this.product;
+                return unitPrice * quantity;
             },
             total: function () {
-                return (this.price + this.price * this.product.VAT / 100).toFixed(2);
+                const {VAT} = this.product;
+                return (this.price + this.price * VAT / 100).toFixed(2);
             }
         }
     });
