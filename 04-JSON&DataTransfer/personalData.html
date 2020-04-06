@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Data</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Personal Data</h1>
+<input type="button" value="Display personal data">
+<ol id="list"></ol>
+
+<script>
+    const button = document.getElementsByTagName('input').item(0);
+    button.onclick = () => {
+        const method = 'GET';
+        const URL = 'http://0.0.0.0:8000/people.json';
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.status === 200 && this.readyState === 4) {
+                const response = JSON.parse(this.response)
+                const listEl = document.getElementById('list')
+                for(let i=0; i<response.length; i++){
+                    const item = document.createElement('li')
+                    const {name, surname, country, email} = response[i]
+                    item.innerHTML = `${name} ${surname.toUpperCase()}, ${country}, ${email}`;
+                    listEl.appendChild(item)
+                }
+
+            }
+        }
+        xhr.open(method, URL)
+        xhr.send()
+    }
+
+
+</script>
+
+</body>
+</html>
