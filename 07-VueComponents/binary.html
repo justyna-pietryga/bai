@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <binary-component v-for="number in [8, 170, 204, 3855]" :number="number"></binary-component>
+</div>
+
+<script type="text/x-template" id="binary-template">
+    <div>
+        <p>{{number}}(10) = {{binary}}(2)</p>
+    </div>
+</script>
+
+<script>
+    Vue.component('binary-component', {
+        template: '#binary-template',
+        props: {
+            number: Number,
+        },
+        computed: {
+            binary: function() {
+                return this.number.toString(2);
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+</script>
+
+
+</body>
+</html>
