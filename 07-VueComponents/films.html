@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <movie1></movie1>
+    <movie2></movie2>
+    <movie3></movie3>
+</div>
+
+<script type="text/x-template" id="movie-template">
+    <div>
+        <h3>{{title}}</h3>
+        <p>{{year}}</p>
+        <p>{{director}}</p>
+    </div>
+</script>
+<script>
+    Vue.component('movie1', {
+        template: '#movie-template',
+        data() {
+            return {
+                title: "Irlandczyk",
+                year: 2019,
+                director: "Martin Scorsese"
+            }
+        },
+    })
+
+    Vue.component('movie2', {
+        template: '#movie-template',
+        data() {
+            return {
+                title: "Kapitan Marvel",
+                year: 2019,
+                director: "Ryan Fleck"
+            }
+        }
+    })
+
+    Vue.component('movie3', {
+        template: '#movie-template',
+        data() {
+            return {
+                title: "Green Book",
+                year: 2018,
+                director: "Peter Farrelly",
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+    })
+</script>
+
+
+</body>
+</html>
