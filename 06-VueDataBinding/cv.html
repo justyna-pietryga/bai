@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="name" placeholder="Imię"></p>
+    <input type="text" v-model="surname" placeholder="Nazwisko"></p>
+    <input type="text" v-model.number="age" placeholder="Wiek"></p>
+    <p>
+        <span>Płeć:</span>
+        <select v-model="gender">
+            <option>Kobieta</option>
+            <option>Mężczyzna</option>
+        </select>
+    </p>
+    <p>
+        <span>Wykształcenie:</span>
+        <select v-model="educationLevel">
+            <option>Brak</option>
+            <option>Podstawowe</option>
+            <option>Średnie</option>
+            <option>Wyższe</option>
+        </select>
+    </p>
+    <p>
+        <span>Umiejętności:</span><br>
+
+        <label for="computerSkills">Obsługa komputera</label>
+        <input type="checkbox" id="computerSkills" value="computerSkills" v-model="skills"><br>
+
+        <label for="drivingLicense">Prawo jazdy</label>
+        <input type="checkbox" id="drivingLicense" value="drivingLicense" v-model="skills"><br>
+
+        <label for="creativity">Kreatywność</label>
+        <input type="checkbox" id="creativity" value="creativity" v-model="skills"><br>
+
+        <label for="workInTeam">Praca w zespole</label>
+        <input type="checkbox" id="workInTeam" value="workInTeam" v-model="skills"><br>
+    </p>
+
+    <button type="button" @click="saveToLocalStorage">Zapisz do schowka</button>
+    <button type="button" @click="readFromLocalStorage()">Czytaj ze schowka</button>
+</div>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            surname: '',
+            age: 0,
+            gender: 'Mężczyzna',
+            educationLevel: 'Brak',
+            skills: [],
+        },
+        methods: {
+            saveToLocalStorage() {
+                const {name, surname, age, gender, educationLevel, skills} = this
+                localStorage.cv = JSON.stringify({name, surname, age, gender, educationLevel, skills});
+            },
+            readFromLocalStorage() {
+                if (localStorage.cv) {
+                    const cv = JSON.parse(localStorage.cv)
+                    this.name = cv.name;
+                    this.surname = cv.surname;
+                    this.age = cv.age;
+                    this.gender = cv.gender;
+                    this.educationLevel = cv.educationLevel;
+                    this.skills = cv.skills;
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
