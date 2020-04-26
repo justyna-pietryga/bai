@@ -4,18 +4,26 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <div id="app">
+<div id="app">
     <span>Your name:</span>
-    <input type="text" v-model="name">  
-  </div>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        name: ''
-      }
+    <input type="text" v-model="name">
+</div>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        watch: {
+            name: function (name) {
+                console.log('name', name)
+                console.log('this.name', this.name)
+                console.log('is typed value assigned to this.name in data ?', this.name === name)
+            }
+        }
     });
-  </script>
+</script>
 
 </body>
 </html>
