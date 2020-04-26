@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src='https://code.jquery.com/jquery-3.3.1.js'></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <chart-component :labels="['I', 'II', 'III', 'IV', 'V', 'VI']" :values="[90, 20, 80, 30, 50, 40]"></chart-component>
+</div>
+
+<script type="text/x-template" id="chart-template">
+    <div>
+        <canvas id="myChart" width="500" height="500"></canvas>
+    </div>
+</script>
+
+<script>
+    Vue.component('chart-component', {
+        template: '#chart-template',
+        props: {
+            labels: Array,
+            values: Array
+        },
+        mounted() {
+            const ctx = document.getElementById('myChart');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: this.labels,
+                    datasets: [
+                        {
+                            label: "Values",
+                            data: this.values,
+                            backgroundColor: 'rgb(255,91,238)',
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            myChart.canvas.parentNode.style.height = '700px';
+            myChart.canvas.parentNode.style.width = '700px';
+
+        }
+    })
+
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+
+
+</body>
+</html>
